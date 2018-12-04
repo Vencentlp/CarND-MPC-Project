@@ -98,9 +98,18 @@ int main() {
           * Both are in between [-1, 1].
           *
           */
+          
           double steer_value;
           double throttle_value;
-
+          
+          vector<double> ptsx_way;
+          vector<double> ptsy_way
+          
+          auto coeffs = polyfit(ptsx, ptsy, 3);
+          double cte = polyeval(coeffs, px) - py;
+          double epsi = psi - atan(coeffs[1] + coeffs[2] * px);
+          
+          
           json msgJson;
           // NOTE: Remember to divide by deg2rad(25) before you send the steering value back.
           // Otherwise the values will be in between [-deg2rad(25), deg2rad(25] instead of [-1, 1].
