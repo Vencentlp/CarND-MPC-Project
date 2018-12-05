@@ -148,7 +148,7 @@ int main() {
           // the points in the simulator are connected by a Green line
           std::cout<< "debug2"<<std::endl;
           //std::cout<< vars <<std::endl;
-         /* for (int i = 2; i < vars.size(); i ++) 
+          for (int i = 2; i < vars.size(); i ++) 
           {
               if (i%2 == 0)
               {
@@ -157,7 +157,7 @@ int main() {
               else {
                 mpc_y_vals.push_back(vars[i]);
               }
-          }*/
+          }
           std::cout<<"wayp x: "<<mpc_x_vals.size()<<std::endl;
           std::cout<<"wayp y: "<<mpc_y_vals.size()<<std::endl;
           
