@@ -102,12 +102,36 @@ int main() {
           double steer_value;
           double throttle_value;
           
-          vector<double> ptsx_way;
-          vector<double> ptsy_way
+          vector<double> ptsx_way;          
+          vector<double> ptsy_way;
           
-          auto coeffs = polyfit(ptsx, ptsy, 3);
-          double cte = polyeval(coeffs, px) - py;
-          double epsi = psi - atan(coeffs[1] + coeffs[2] * px);
+          for (int i = 0;i<ptsx.size();i++)
+          {
+              double deltax = ptsx[i] - px;
+              double deltay = ptsy[i] - py;
+              ptsx_way.push_back(deltax * cos(-psi) - deltay * sin(-psi));
+              ptsy_way.push_back(deltax * sin(-psi) + deltay * cos(-psi));
+          }
+          std::cout<<"debug1"<<std::endl;
+          
+          double* ptsx_way_p = &ptsx_way[0];
+          double* ptsy_way_p = &ptsy_way[0];
+          Eigen::Map<Eigen::VectorXd> ptsx_way_r(ptsx_way_p, 6);
+          Eigen::Map<Eigen::VectorXd> ptsy_way_r(ptsy_way_p, 6);
+          
+          auto coeffs = polyfit(ptsx_way_r, ptsy_way_r, 3);
+          double cte = polyeval(coeffs, 0);
+          double epsi = - atan(coeffs[1]);
+          
+          Eigen::VectorXd state(6);
+          std::cout<<"debug1.5"<<std::endl;
+          
+          state << 0, 0, 0, v, cte, epsi;
+          auto vars = mpc.Solve(state,coeffs);
+          steer_value = vars[0];
+          throttle_value = vars[1];
+          std::cout<<"vars size: "<<vars.size()<<std::endl;
+          
           
           
           json msgJson;
@@ -122,9 +146,26 @@ int main() {
 
           //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system
           // the points in the simulator are connected by a Green line
+          std::cout<< "debug2"<<std::endl;
+          //std::cout<< vars <<std::endl;
+         /* for (int i = 2; i < vars.size(); i ++) 
+          {
+              if (i%2 == 0)
+              {
+                mpc_x_vals.push_back(vars[i]);
+              }
+              else {
+                mpc_y_vals.push_back(vars[i]);
+              }
+          }*/
+          std::cout<<"wayp x: "<<mpc_x_vals.size()<<std::endl;
+          std::cout<<"wayp y: "<<mpc_y_vals.size()<<std::endl;
+          
 
           msgJson["mpc_x"] = mpc_x_vals;
           msgJson["mpc_y"] = mpc_y_vals;
+          
+          
 
           //Display the waypoints/reference line
           vector<double> next_x_vals;
@@ -132,6 +173,12 @@ int main() {
 
           //.. add (x,y) points to list here, points are in reference to the vehicle's coordinate system
           // the points in the simulator are connected by a Yellow line
+          std::cout<<"debug3"<<std::endl;
+          for (double i = 0; i < 100; i += 3)
+          {
+            next_x_vals.push_back(i);
+            next_y_vals.push_back(polyeval(coeffs, i));
+          }
 
           msgJson["next_x"] = next_x_vals;
           msgJson["next_y"] = next_y_vals;
