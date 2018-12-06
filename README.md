@@ -85,6 +85,21 @@ I use the kinematic model as the following euqations:
 ![image](https://github.com/Vencentlp/CarND-MPC-Project/raw/master/equationsMPC.png)
 
 Where
-x 
 
-### 2.
+x, y, psi, v, cte and epsi are model state.
+a(accelaration) and delta(steering angle) are the output of the model.
+The goal is to find the best a and delta to mimnimize the distance between the reference way and predicted way.
+The distance can be represented by the combination of the follwing factors:
+* square sum of cte and epsi
+* Square sum of actuators to reduce times of actuation.
+* Square sum of the difference between two consecutive actuator value to slow down the change rate.
+
+### 2.Timestep Length and Elapsed Duration (N & dt)
+First I determined the prediction horizon T(T = N * dt). It should be some seconds. It will be late to respond if the T is too small. If T is too large the environment will change enough that it won't make sense to predict any further into the future. I tryed 0.5s to 5s. 1s is the best. So I first set the T as 1s. N determines the point numbers. I want as many as points to make the predicted line closer to the reference line through actuationg between two points. But too many points will slow down the calculation speed. I tryed 5-20 and finally I found 10 is the best. Finally I use N = 10 and dt = 0.1.
+
+### 3.Polynomial Fitting and MPC Preprocessing
+The waypoints received from simulator are transformed from map coordinate into car coordinate. Then I fitted the transformed points into a 3 order line. The coefficients are used to calculate the cte and epsi.
+
+### 4.Model Predictive Control with Latency
+For the latency, i add the 
+ 
