@@ -82,3 +82,9 @@ for instructions and the project rubric.
 ### 1. Model
 I use the kinematic model as the following euqations:
 
+![image](https://github.com/Vencentlp/CarND-MPC-Project/raw/master/equations.png)
+
+For the cross track error:
+cte = 
+
+### 2.
