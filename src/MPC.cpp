@@ -62,13 +62,13 @@ class FG_eval {
 
     // Minimize the use of actuators.
     for (int t = 0; t < N - 1; t++) {
-      fg[0] += 100*CppAD::pow(vars[delta_start + t], 2);
+      fg[0] += 150*CppAD::pow(vars[delta_start + t], 2);
       fg[0] += CppAD::pow(vars[a_start + t], 2);
     }
 
     // Minimize the value gap between sequential actuations.
     for (int t = 0; t < N - 2; t++) {
-      fg[0] += 100*CppAD::pow(vars[delta_start + t + 1] - vars[delta_start + t], 2);
+      fg[0] += 200*CppAD::pow(vars[delta_start + t + 1] - vars[delta_start + t], 2);
       fg[0] += CppAD::pow(vars[a_start + t + 1] - vars[a_start + t], 2);
     }
 
@@ -272,15 +272,15 @@ std::vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   // {...} is shorthand for creating a vector, so auto x1 = {1.0,2.0}
   // creates a 2 element double vector.
   
-  std::vector<double> result;
+  std::vector<double> vars_out;
 
-  result.push_back(solution.x[delta_start]);
-  result.push_back(solution.x[a_start]);
+  vars_out.push_back(solution.x[delta_start]);
+  vars_out.push_back(solution.x[a_start]);
 
   for ( int i = 0; i < N - 1; i++ ) 
   {
-    result.push_back(solution.x[x_start + i + 1]);
-    result.push_back(solution.x[y_start + i + 1]);
+    vars_out.push_back(solution.x[x_start + i + 1]);
+    vars_out.push_back(solution.x[y_start + i + 1]);
   }
-  return result;
+  return vars_out;
 }

@@ -8,6 +8,7 @@ using namespace std;
 class MPC {
  public:
   MPC();
+  const double Lf = 2.67;
 
   virtual ~MPC();
 
