@@ -101,5 +101,5 @@ First I determined the prediction horizon T(T = N * dt). It should be some secon
 The waypoints received from simulator are transformed from map coordinate into car coordinate. Then I fitted the transformed points into a 3 order line. The coefficients are used to calculate the cte and epsi.
 
 ### 4.Model Predictive Control with Latency
-For the latency, i add the 
+For the latency, i added it to the initial value to delay about 100ms. 
  
