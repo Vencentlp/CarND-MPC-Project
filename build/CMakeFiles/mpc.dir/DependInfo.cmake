@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/udacity/CarND-MPC-Project/src/MPC.cpp" "/home/udacity/CarND-MPC-Project/build/CMakeFiles/mpc.dir/src/MPC.cpp.o"
-  "/home/udacity/CarND-MPC-Project/src/main.cpp" "/home/udacity/CarND-MPC-Project/build/CMakeFiles/mpc.dir/src/main.cpp.o"
+  "/home/liup/work/udacity/CarND-MPC-Project/src/MPC.cpp" "/home/liup/work/udacity/CarND-MPC-Project/build/CMakeFiles/mpc.dir/src/MPC.cpp.o"
+  "/home/liup/work/udacity/CarND-MPC-Project/src/main.cpp" "/home/liup/work/udacity/CarND-MPC-Project/build/CMakeFiles/mpc.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -1,4 +1,4 @@
-# Install script for directory: /home/udacity/CarND-MPC-Project
+# Install script for directory: /home/liup/work/udacity/CarND-MPC-Project
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/udacity/CarND-MPC-Project/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/liup/work/udacity/CarND-MPC-Project/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

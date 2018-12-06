@@ -1,3 +1,3 @@
-/home/udacity/CarND-MPC-Project/build/CMakeFiles/rebuild_cache.dir
-/home/udacity/CarND-MPC-Project/build/CMakeFiles/mpc.dir
-/home/udacity/CarND-MPC-Project/build/CMakeFiles/edit_cache.dir
+/home/liup/work/udacity/CarND-MPC-Project/build/CMakeFiles/rebuild_cache.dir
+/home/liup/work/udacity/CarND-MPC-Project/build/CMakeFiles/mpc.dir
+/home/liup/work/udacity/CarND-MPC-Project/build/CMakeFiles/edit_cache.dir
